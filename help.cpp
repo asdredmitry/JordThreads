@@ -5,10 +5,10 @@
 
 #include "help.h"
 
-#define MAX_OUTPUT_SIZE 5
+#define MAX_OUTPUT_SIZE 10
 double f(int i, int j)
 {
-    return 1.0/(i + j + 1.0);
+    return fabs(i - j);
 }
 void readMatrix(int n, double *a, double *b, int mode, FILE *input)
 {

@@ -2,6 +2,8 @@
 #include <math.h>
 
 #include "task.h"
+#include "help.h"
+#include <stdio.h>
 
 void synchronize(int total_threads)
 {
@@ -41,8 +43,6 @@ int SolveSystem(int n, double *a, double *b, double *x, int *index, int my_rank,
 	int last_row;
 	double tmp;
 
-	for (i = 0; i < n; i++)
-		index[i] = i;
 
 	for (i = 0; i < n; i++)
 	{
@@ -98,12 +98,20 @@ int SolveSystem(int n, double *a, double *b, double *x, int *index, int my_rank,
 				a[j * n + k] -= tmp * a[i * n + k];
 			b[j] -= tmp * b[i];
 		}
+        synchronize(total_threads);
+        /*if(my_rank == 0)
+        {
+            printf(" \n ");
+            printMatrix(n,a,b);
+            printf(" \n ");
+            printVector(n,x);
+        }*/
 		synchronize(total_threads);
 	}
 
 	if (my_rank == 0)
 		for (i = n - 1; i >= 0; i--)
-			x[index[i]] = b[i];
+            x[index[i]] = b[i];
 
 	return 0;
 }

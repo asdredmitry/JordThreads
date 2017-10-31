@@ -87,7 +87,8 @@ int main()
 	args = (ARGS*)malloc(total_threads * sizeof(ARGS));
 
     readMatrix(n, a, b, mode, input);
-
+    for (i = 0; i < n; i++)
+        index[i] = i;
 	printf("Matrix A:\n");
     printMatrix(n, a, b);
 

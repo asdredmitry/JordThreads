@@ -1,5 +1,6 @@
 #ifndef __HELP_H_INCLUDED__
 #define __HELP_H_INCLUDED__
+#include <stdio.h>
 
 double f(int i, int j);
 
